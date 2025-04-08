@@ -56,7 +56,7 @@ Before using this tool, ensure you have:
 
 1.  **Clone or Download:** Get the code for *this* project (`maps_flutter`).
     ```bash
-    git clone <repository-url> # Replace with the actual URL if hosted
+    git clone git@github.com:RotRot-pi/flutter_google_maps_integrator.git
     cd maps_flutter
     ```
 2.  **Get Dependencies (for this tool):**
