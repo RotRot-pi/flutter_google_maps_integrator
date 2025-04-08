@@ -6,6 +6,7 @@ import 'package:maps_flutter/providers/automation_tool_screen_providers.dart';
 import 'package:maps_flutter/providers/project_selector_providers.dart';
 import 'package:maps_flutter/utils/configure_android.dart';
 import 'package:maps_flutter/utils/configure_ios.dart';
+import 'package:maps_flutter/utils/run_flutter_pub_get.dart';
 import 'dart:developer';
 
 import '../widgets/project_selector.dart';
