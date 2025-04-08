@@ -48,7 +48,6 @@ Future<void> _configureSwiftAppDelegate(File file, String key) async {
   );
   final apiKeyLineReplacement = '    GMSServices.provideAPIKey("$key")';
 
-  // Make the method detection more flexible
   final didFinishLaunchingPattern = RegExp(
     r'func\s+application\s*\(.*didFinishLaunchingWithOptions.*\)\s*->',
   );
@@ -63,7 +62,6 @@ Future<void> _configureSwiftAppDelegate(File file, String key) async {
     (line) => apiKeyLinePattern.hasMatch(line),
   );
 
-  // Find the application delegate method
   int didFinishLaunchingLineIndex = -1;
   for (int i = 0; i < lines.length; i++) {
     if (didFinishLaunchingPattern.hasMatch(lines[i])) {
@@ -72,7 +70,6 @@ Future<void> _configureSwiftAppDelegate(File file, String key) async {
     }
   }
 
-  // Find the opening brace after the method signature
   int didFinishLaunchingEndIndex = -1;
   if (didFinishLaunchingLineIndex != -1) {
     for (int i = didFinishLaunchingLineIndex; i < lines.length; i++) {
@@ -83,7 +80,6 @@ Future<void> _configureSwiftAppDelegate(File file, String key) async {
     }
   }
 
-  // Find return statement as a fallback insertion point
   int returnLineIndex = -1;
   for (int i = 0; i < lines.length; i++) {
     if (returnPattern.hasMatch(lines[i])) {
@@ -94,7 +90,6 @@ Future<void> _configureSwiftAppDelegate(File file, String key) async {
 
   List<String> newLines = List.from(lines);
 
-  // Add import if needed
   if (!importExists) {
     log('Adding "$importStatement"...');
 
@@ -111,25 +106,19 @@ Future<void> _configureSwiftAppDelegate(File file, String key) async {
     }
   }
 
-  // Update or insert API key
   if (apiKeyLineIndex != -1) {
     log('Found existing API key line. Updating...');
     newLines[apiKeyLineIndex] = apiKeyLineReplacement;
   } else {
     log('API key line not found. Inserting...');
 
-    // Try to insert after opening brace
     if (didFinishLaunchingEndIndex != -1) {
       newLines.insert(didFinishLaunchingEndIndex + 1, apiKeyLineReplacement);
       log('Added API key after application method opening brace.');
-    }
-    // Try to insert before return statement
-    else if (returnLineIndex != -1) {
+    } else if (returnLineIndex != -1) {
       newLines.insert(returnLineIndex, apiKeyLineReplacement);
       log('Added API key before return statement.');
-    }
-    // Cannot find appropriate location
-    else {
+    } else {
       log(
         '❌ Warning: Could not find appropriate location to insert Google Maps API key.',
       );
@@ -184,7 +173,7 @@ Future<void> _configureObjcAppDelegate(File file, String key) async {
     int importInsertIndex = newLines.lastIndexWhere(
       (line) => line.trim().startsWith('#import '),
     );
-    // Fix: Added braces to if/else statement for consistency
+
     if (importInsertIndex == -1) {
       importInsertIndex = 0;
     } else {
