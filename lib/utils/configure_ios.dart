@@ -101,7 +101,7 @@ Future<void> _configureSwiftAppDelegate(File file, String key) async {
     newLines.insert(importInsertIndex, importStatement);
     if (importInsertIndex == 0 &&
         newLines.length > 1 &&
-        !newLines[1].trim().isEmpty) {
+        newLines[1].trim().isNotEmpty) {
       newLines.insert(importInsertIndex + 1, '');
     }
   }
