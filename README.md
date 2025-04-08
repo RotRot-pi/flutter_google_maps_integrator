@@ -31,7 +31,6 @@ A Flutter desktop application designed to automate the initial setup and integra
     *   Provides an option to **skip** API key configuration if it's already handled manually or through other means in the target project.
 *   **Demo Code Injection:**
     *   Creates a new file `lib/map_demo_screen.dart` in the target project containing a basic `GoogleMap` widget implementation.
-    *   **Important:** It *does not* automatically modify the target project's `lib/main.dart` to use this demo screen. See "Important Notes" below.
 *   **User Interface & Feedback:**
     *   Provides a clear, step-by-step interface.
     *   Shows the currently selected project path.
