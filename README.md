@@ -112,7 +112,7 @@ The tool executes the following sequence when "Start Integration Process" is cli
 
 ## Important Notes & Caveats
 
-*   **`main.dart` is NOT Modified:** As mentioned, you MUST manually update your target project's `lib/main.dart` to use the injected `MapDemoScreen`. This is done intentionally to avoid potentially complex and risky automated modifications to user code in `main.dart`.
+
 *   **Backup Recommended:** While the tool tries to be careful, it's always wise to **back up your target project** or use version control (like Git) before running any automation script that modifies files.
 *   **File Parsing:** The tool relies on finding specific patterns and structures in `AndroidManifest.xml` and `AppDelegate` files. Highly customized or unusual project structures might cause the configuration steps to fail. Check the tool's log output and the modified files if issues occur.
 *   **Error Handling:** Basic error handling is included, but edge cases might exist. If an error occurs, the process stops, and an error message is displayed.
